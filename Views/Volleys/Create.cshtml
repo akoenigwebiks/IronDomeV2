@@ -1,0 +1,97 @@
+﻿@model IronDomeV2.ViewModels.Volleys.VMCreateVolley
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Volley</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+             <!-- Attacker Name (Readonly) -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" style="background-color: yellow;">
+                        <i class="bi bi-rocket-takeoff-fill" style="color: red;"></i>
+                    </span>
+                </div>
+                <input type="text"
+                       class="form-control"
+                       placeholder="Attacker Name"
+                       readonly
+                       value="@Model?.Attacker.Name">
+            </div>
+
+            <!-- Methods of Attack -->
+            <div id="methodsContainer">
+                @for (int i = 0; i < Model?.Methods?.Count(); i++)
+                {
+                    <div class="input-group mb-3">
+                        <select class="form-control" name="Methods[@i].MethodOfAttack.Id">
+                            @foreach (var method in Model.MethodOfAttacks)
+                            {
+                                <option value="@method.Id">
+                                    @method.Name
+                                </option>
+                            }
+                        </select>
+
+                        <input type="number"
+                               class="form-control"
+                               placeholder="Amount"
+                               name="Methods[@i].Amount"
+                               value="@Model.Methods.ElementAt(i).Amount" />
+                    </div>
+                }
+            </div>
+
+            <div class="mb-3">
+                <button type="button" id="addMethod" class="btn btn-primary w-100">
+                    <i class="bi bi-plus"></i> Add Method of Attack
+                </button>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success w-100">
+                    <i class="bi bi-check2-circle"></i> Create Volley
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        document.getElementById('addMethod').addEventListener('click', function () {
+            var container = document.getElementById('methodsContainer');
+            var index = container.childElementCount;
+
+            var selectOptions = `
+                @foreach (var method in Model.MethodOfAttacks)
+                {
+                    <option value="@method.Id">@method.Name</option>
+                }`;
+
+            var methodHtml = `
+                <div class="input-group mb-3">
+                    <select class="form-control" name="Methods[${index}].MethodOfAttack.Id">
+                        ${selectOptions}
+                    </select>
+                    <input type="number" class="form-control" placeholder="Amount" name="Methods[${index}].Amount" />
+                </div>`;
+            container.insertAdjacentHTML('beforeend', methodHtml);
+        });
+    </script>
+}

@@ -10,7 +10,7 @@ public class MethodOfAttack
     public string Name { get; set; }
     public double Range { get; set; }
     public double Velocity { get; set; }
-    public double Distance { get; set; } // Distance to the target
+    public double Distance { get; set; } // Distance covered
     public DateTime? TimeOfLaunch { get; set; } // Time when the method was launched
 
     // Foreign key

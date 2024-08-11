@@ -49,7 +49,7 @@ namespace IronDomeV2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name")] Attacker attacker)
+        public async Task<IActionResult> Create([Bind("Name,Distance")] Attacker attacker)
         {
 
             var errMsg = attacker switch

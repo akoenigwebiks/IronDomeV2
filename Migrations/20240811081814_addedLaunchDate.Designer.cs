@@ -4,6 +4,7 @@ using IronDomeV2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IronDomeV2.Migrations
 {
     [DbContext(typeof(IronDomeV2Context))]
-    partial class IronDomeV2ContextModelSnapshot : ModelSnapshot
+    [Migration("20240811081814_addedLaunchDate")]
+    partial class addedLaunchDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,7 +153,7 @@ namespace IronDomeV2.Migrations
                     b.Property<int>("AttackerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("launchDate")
+                    b.Property<DateTime>("launchDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");

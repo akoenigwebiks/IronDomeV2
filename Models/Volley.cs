@@ -7,7 +7,7 @@ public class Volley
     // Foreign key
     public int AttackerId { get; set; }
     public Attacker Attacker { get; set; }
-
+    public DateTime? launchDate { get; set; }
     // Navigation property
     public IEnumerable<MethodOfAttack> MethodsOfAttack { get; set; }
 }
