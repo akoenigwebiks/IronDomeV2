@@ -1,0 +1,56 @@
+﻿@model IronDomeV2.ViewModels.VMCreateMethodOfAttackTemplate
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MethodOfAttackTemplate</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MethodOfAttackTemplate.Name" class="control-label"></label>
+                <input asp-for="MethodOfAttackTemplate.Name" class="form-control" />
+                <span asp-validation-for="MethodOfAttackTemplate.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MethodOfAttackTemplate.Description" class="control-label"></label>
+                <input asp-for="MethodOfAttackTemplate.Description" class="form-control" />
+                <span asp-validation-for="MethodOfAttackTemplate.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MethodOfAttackTemplate.Range" class="control-label"></label>
+                <input asp-for="MethodOfAttackTemplate.Range" class="form-control" />
+                <span asp-validation-for="MethodOfAttackTemplate.Range" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MethodOfAttackTemplate.Velocity" class="control-label"></label>
+                <input asp-for="MethodOfAttackTemplate.Velocity" class="form-control" />
+                <span asp-validation-for="MethodOfAttackTemplate.Velocity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Attacker.Id" class="control-label"></label>
+                <input asp-for="Attacker.Name" readonly class="form-control" />
+                <input type="hidden" asp-for="Attacker.Id" class="form-control" />
+                <span asp-validation-for="Attacker.Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
