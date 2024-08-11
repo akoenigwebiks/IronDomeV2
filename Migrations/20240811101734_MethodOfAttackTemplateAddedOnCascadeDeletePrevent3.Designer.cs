@@ -4,6 +4,7 @@ using IronDomeV2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IronDomeV2.Migrations
 {
     [DbContext(typeof(IronDomeV2Context))]
-    partial class IronDomeV2ContextModelSnapshot : ModelSnapshot
+    [Migration("20240811101734_MethodOfAttackTemplateAddedOnCascadeDeletePrevent3")]
+    partial class MethodOfAttackTemplateAddedOnCascadeDeletePrevent3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -17,6 +17,9 @@ namespace IronDomeV2
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            // Add SignalR services
+            builder.Services.AddSignalR(); // <-- Add this line
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

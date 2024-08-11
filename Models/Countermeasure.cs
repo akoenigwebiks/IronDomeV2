@@ -38,7 +38,7 @@ public class Countermeasure
             if (MethodOfAttack == null || LaunchTime == null) return false;
 
             // Time when the MethodOfAttack will reach the countermeasure's range
-            double timeUntilInRange = (MethodOfAttack.Distance - Range) / MethodOfAttack.Velocity;
+            double timeUntilInRange = (MethodOfAttack.Distance - Range) / MethodOfAttack.MethodOfAttackTemplate.Velocity;
             double timeAfterLaunch = (DateTime.Now - LaunchTime.Value).TotalSeconds;
 
             // Countermeasure can intercept if launched before or exactly when the MethodOfAttack enters its range

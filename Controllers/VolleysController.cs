@@ -4,16 +4,22 @@ using Microsoft.EntityFrameworkCore;
 using IronDomeV2.Data;
 using IronDomeV2.Models;
 using IronDomeV2.ViewModels.Volleys;
+using Microsoft.AspNetCore.SignalR;
 
 namespace IronDomeV2.Controllers
 {
     public class VolleysController : Controller
     {
         private readonly IronDomeV2Context _context;
+        private readonly IHubContext<ChatHub> _hubContext;
 
-        public VolleysController(IronDomeV2Context context)
+
+        public VolleysController(IronDomeV2Context context,
+             IHubContext<ChatHub> hubContext
+            )
         {
             _context = context;
+            _hubContext = hubContext;
         }
 
         // GET: Volleys
@@ -46,8 +52,12 @@ namespace IronDomeV2.Controllers
         [Route("Volleys/Create/{AttackerId}")]
         public async Task<IActionResult> Create(int AttackerId)
         {
+
+
             var attacker = await _context.Attacker
                                          .FirstOrDefaultAsync(a => a.Id == AttackerId);
+            // notify defenders of volley created
+            _hubContext.Clients.All.SendAsync("BE_VolleyCreatedAlert", attacker);
 
             if (attacker == null)
             {
@@ -141,6 +151,9 @@ namespace IronDomeV2.Controllers
         // GET: Volleys/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+
+
+
             if (id == null)
             {
                 return NotFound();

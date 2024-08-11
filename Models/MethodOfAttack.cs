@@ -8,9 +8,9 @@ public class MethodOfAttack
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public double Range { get; set; }
-    public double Velocity { get; set; }
-    public double Distance { get; set; } // Distance covered
+    public double Distance { get; set; } // Distance covered mid flight
+    public MethodOfAttackTemplate MethodOfAttackTemplate { get; set; }
+    public int MethodOfAttackTemplateId { get; set; }
     public DateTime? TimeOfLaunch { get; set; } // Time when the method was launched
 
     // Foreign key
@@ -26,7 +26,7 @@ public class MethodOfAttack
     {
         get
         {
-            return Distance / Velocity;
+            return Distance / MethodOfAttackTemplate.Velocity;
         }
     }
 
